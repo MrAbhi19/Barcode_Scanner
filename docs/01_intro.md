@@ -43,3 +43,59 @@ the left 6-digits and right 6-digits is where all the data is stored
 - The 5 digits of left side indicates the manufacturer code.
 - The 5-digits of right side indicates the product code.
 - The 12th digit is a check digit calculated from previos 11 digits.
+
+How 12th digit is calculated?
+
+Multiply odd-position digits (1st, 3rd, 5th, etc.) by 3.<br>
+Add even-position digits (2nd, 4th, 6th, etc.) to the result.<br>
+Find the smallest number that, when added to the total, makes it a multiple of 10.<br>
+That number is the check digit.
+
+> ## ✅ Example: Calculating the 12th Digit (Check Digit) of a UPC-A Barcode  
+> Let’s say the first 11 digits of the barcode are:  
+> **0 3 6 0 0 0 2 9 0 1 3**  
+>   
+> ### 🔢 Step 1: Multiply digits in odd positions by 3  
+> **Odd positions**: 1st, 3rd, 5th, 7th, 9th, 11th  
+> **Digits**: 0, 6, 0, 2, 0, 3  
+> **Calculation**:  
+> `(0 + 6 + 0 + 2 + 0 + 3) × 3 = 11 × 3 = 33`  
+>   
+> ### ➕ Step 2: Add digits in even positions  
+> **Even positions**: 2nd, 4th, 6th, 8th, 10th  
+> **Digits**: 3, 0, 0, 9, 1  
+> **Calculation**:  
+> `3 + 0 + 0 + 9 + 1 = 13`  
+>   
+> ### 🧮 Step 3: Add both results  
+> `33 + 13 = 46`  
+>   
+> ### 🎯 Step 4: Find the check digit  
+> Next multiple of 10 after 46 is **50**  
+> `Check Digit = 50 - 46 = 4`  
+>   
+> ### ✅ Final UPC-A Barcode  
+> **036000290134**
+
+[barcode image1](../hardware/images/barcode1.png)
+
+## 🔢 How 7 Lines Encode One Digit
+
+Each digit (0–9) in a UPC-A barcode is represented by a unique 7-bit binary pattern. These patterns differ depending on whether the digit appears on the **left side** or **right side** of the barcode.
+
+| Digit | 🧭 Left Side (Odd Parity) | 🧭 Right Side (Even Parity) |
+|-------|---------------------------|-----------------------------|
+| 0     | 0001101                   | 1110010                     |
+| 1     | 0011001                   | 1100110                     |
+| 2     | 0010011                   | 1101100                     |
+| 3     | 0111101                   | 1000010                     |
+| 4     | 0100011                   | 1011100                     |
+| 5     | 0110001                   | 1001110                     |
+| 6     | 0101111                   | 1010000                     |
+| 7     | 0111011                   | 1000100                     |
+| 8     | 0110111                   | 1001000                     |
+| 9     | 0001011                   | 1110100                     |
+
+> Example:
+> [barcode image2](../hardware/images/barcode_Ex.png)
+> 
